@@ -6,6 +6,10 @@ module WorkingHours
   @@open = 9
   @@close = 17
 
+  def self.open?(now=DateTime.now.in_time_zone(@@time_zone))
+    now.hour.between?(@@open,@@close) && !weekend?(now)
+  end
+
   def self.after_hours?(now=DateTime.now.in_time_zone(@@time_zone))
     !now.hour.between?(@@open,@@close)
   end
