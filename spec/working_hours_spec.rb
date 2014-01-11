@@ -3,7 +3,10 @@ require 'spec_helper'
 describe WorkingHours do
   describe ".weekend?" do
     context "on the weekend" do
-      it "should return true"
+      it "should return true" do
+        time = DateTime.new(2013,10,11,19)
+        WorkingHours.weekend?(time).should be_true
+      end
     end
   end
 
