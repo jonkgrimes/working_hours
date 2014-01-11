@@ -2,7 +2,8 @@
 
 WorkingHours is a simple gem that allows you to set the hours of operation
 for a Rails application and then provides nice convenience methods
-for determining whether a business is in operation.
+for determining whether a business is in operation and if it is the
+weekend or not.
 
 ## Installation
 
@@ -20,11 +21,28 @@ Or install it yourself as:
 
 ## Usage
 
-Quite simply, including the gem will give you the default hours of operation
-(9 AM CT to 5 PM CT) and the follwing methods:
+Quite simply as it stands right now you'll get two methods:
 
-* after_hours?(now)
-* weekend? 
+__after_hours?__
+```ruby
+# returns a boolean if it's after the business has closed or before it opens on a weekday
+WorkingHours.after_hours?(now)
+```
+
+and
+
+__weekend?__
+```ruby
+# returns a boolean if it's after the business has closed on Friday
+WorkingHours.weekend?(now)
+```
+
+I have plans to add the following:
+
+-  __open?__ and __closed?__
+-  __hours?__
+-  Support for setting the working hours in an initializer
+-  Support for setting the timezone in an initializer
 
 ## Contributing
 
