@@ -9,7 +9,7 @@ weekend or not.
 
 Add this line to your application's Gemfile:
 
-    gem 'working_hours'
+    gem 'working_hours', git: "git://github.com/jonkgrimes/working_hours.git"
 
 And then execute:
 
@@ -21,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-Quite simply as it stands right now you'll get two methods:
+The methods that are currently available:
 
 __after_hours?__
 ```ruby
@@ -37,12 +37,25 @@ __weekend?__
 WorkingHours.weekend?(now)
 ```
 
-I have plans to add the following:
+__open?__
+```ruby
+# returns a boolean if the business is currently open
+WorkingHours.open?
+```
 
--  __open?__ and __closed?__
+__closed?__
+```ruby
+WorkingHours.closed?
+```
+
+Things I plan to add
 -  __hours?__
--  Support for setting the working hours in an initializer
--  Support for setting the timezone in an initializer
+-  Error checking for the initializer
+-  Taking multiple types in the initializer (Strings, Integers, TimeZone)
+-  Using Rails' built-in timezone settings if applicable
+-  Different messages for models based on WorkingHours methods (for instance
+a different validation/error/ completion message for when a business is 
+closed or open)
 
 ## Contributing
 
