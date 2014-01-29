@@ -3,10 +3,6 @@ require "working_hours/config"
 
 module WorkingHours
 
-  @@time_zone = "Eastern Time (US & Canada)"
-  @@open = 9
-  @@close = 17
-
   class << self
 
     def config=(data)
@@ -17,21 +13,26 @@ module WorkingHours
       @config ||= Config.new
     end
 
+    def configure(&proc)
+      @config ||= Config.new
+      yield @config
+    end
+
   end
 
-  def self.open?(now=DateTime.now.in_time_zone(@@time_zone))
-    now.hour.between?(@@open,@@close) && !weekend?(now)
+  def self.open?(now=DateTime.now.in_time_zone(self.config.time_zone))
+    now.hour.between?(self.config.open,self.config.close) && !weekend?(now)
   end
 
-  def self.closed?(now=DateTime.now.in_time_zone(@@time_zone))
+  def self.closed?(now=DateTime.now.in_time_zone(self.config.time_zone))
     !self.open?(now)
   end
 
-  def self.after_hours?(now=DateTime.now.in_time_zone(@@time_zone))
-    !now.hour.between?(@@open,@@close)
+  def self.after_hours?(now=DateTime.now.in_time_zone(self.config.time_zone))
+    !now.hour.between?(self.config.open,self.config.close)
   end
 
-  def self.weekend?(now=DateTime.now.in_time_zone(@@time_zone))
+  def self.weekend?(now=DateTime.now.in_time_zone(self.config.time_zone))
     (now.friday? && after_hours?(now)) || now.saturday? || now.sunday?
   end
 

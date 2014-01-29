@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe WorkingHours do
+  before do
+    WorkingHours.config = WorkingHours::Config.new
+  end
 
   describe ".open?" do
     context "when a business should be open" do
