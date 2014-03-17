@@ -55,13 +55,13 @@ WorkingHours.weekend?(now)
 
 __open?__
 ```ruby
-# returns a boolean if the business is currently open
+# returns a boolean, true if open, false is not
 WorkingHours.open?
 ```
 
 __closed?__
 ```ruby
-# the oppsoite of open?
+# returns a boolean the opposite of open?, true if closed, false if not
 WorkingHours.closed?
 ```
 
