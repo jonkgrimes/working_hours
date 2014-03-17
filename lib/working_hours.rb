@@ -36,4 +36,8 @@ module WorkingHours
     (now.friday? && after_hours?(now)) || now.saturday? || now.sunday?
   end
 
+  def self.hours
+    self.config.open..self.config.close
+  end
+
 end

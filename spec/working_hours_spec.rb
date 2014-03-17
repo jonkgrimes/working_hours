@@ -82,4 +82,10 @@ describe WorkingHours do
     end
   end
 
+  describe "hours" do
+    it "should return a range of the hours" do
+      WorkingHours.hours.should eq(9..17)
+    end
+  end
+
 end

@@ -19,7 +19,23 @@ Or install it yourself as:
 
     $ gem install working_hours
 
+## Configuration
+
+WorkingHours defaults to having your business open from 9 AM (ET) to 5 PM (ET).
+
+If you would like to change the open and close hours you can set them in a
+Rails initializer like so:
+
+```ruby
+# Initializer that sets open and close time to 7 AM (ET) to 7 PM (ET).
+WorkingHours.config do |config|
+  config.open = 7
+  config.close = 19
+end
+```
+
 ## Usage
+
 
 The methods that are currently available:
 
@@ -45,16 +61,22 @@ WorkingHours.open?
 
 __closed?__
 ```ruby
+# the oppsoite of open?
 WorkingHours.closed?
 ```
 
+__hours__
+```ruby
+# returns a range from the opening hour to the closing hour
+WorkingHours.hours
+```
+
 Things I plan to add
--  __hours?__
 -  Error checking for the initializer
 -  Taking multiple types in the initializer (Strings, Integers, TimeZone)
 -  Using Rails' built-in timezone settings if applicable
 -  Different messages for models based on WorkingHours methods (for instance
-a different validation/error/ completion message for when a business is 
+a different validation/error/ completion message for when a business is
 closed or open)
 
 ## Contributing
